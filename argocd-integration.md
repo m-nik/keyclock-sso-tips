@@ -37,3 +37,39 @@ argo-cd:
         g, argocd-prd-readonly, role:readonly
         g, argocd-prd-admin, role:admin
 ```
+
+
+## Sample AppProject
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: frontend
+  namespace: argocd
+spec:
+  description: "Frontend applications"
+  sourceRepos:
+    - 'ssh://git@gitlab.site.trade:22/front/*'
+    - 'ssh://git@gitlab.site.trade:22/devops/*'
+  destinations:
+    - namespace: site-frontend
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  roles:
+    - name: readonly
+      description: "Read-only access for frontend apps"
+      policies:
+        - p, proj:frontend:readonly, applications, get, frontend/*, allow
+        - p, proj:frontend:readonly, applications, list, frontend/*, allow
+      groups:
+        - argocd-prd-frontend-readonly
+    - name: admin
+      description: "Full access for frontend apps"
+      policies:
+        - p, proj:frontend:admin, applications, *, frontend/*, allow
+        - p, proj:frontend:admin, exec, create, frontend/*, allow
+      groups:
+        - argocd-prd-frontend-admin
+```
