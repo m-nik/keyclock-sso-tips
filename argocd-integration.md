@@ -1,5 +1,5 @@
-## keyclock define client tips
-
+## keyclock argocd client configurations
+https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/keycloak/
 
 ## Argocd helm values
 ```yaml
