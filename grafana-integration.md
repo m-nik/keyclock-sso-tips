@@ -26,6 +26,8 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configu
     grafana.ini:
       server:
         root_url: https://grafana.site.info
+      #log:
+      #  level: debug
       auth.generic_oauth:
         enabled: true
         name: Keycloak
@@ -35,9 +37,14 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configu
         token_url: https://sso.site.info/realms/master/protocol/openid-connect/token
         api_url: https://sso.site.info/realms/master/protocol/openid-connect/userinfo
         email_attribute_path: email
-        login_attribute_path: username
-        name_attribute_path: full_name
-        role_attribute_path: contains(realm_access.roles[*], 'grafana_admin') && 'Admin' || contains(realm_access.roles[*], 'grafana_editor') && 'Editor' || 'Viewer'
+        login_attribute_path: preferred_username
+        name_attribute_path: name
+        # bug with using roles. grafana don't get roles in auth!
+        # role_attribute_path: contains(realm_access.roles[*], 'grafana_admin') && 'Admin' || contains(realm_access.roles[*], 'grafana_editor') && 'Editor' || 'Viewer'
+        role_attribute_path: >
+          contains(groups, 'Grafana-prd-admin') && 'Admin' ||
+          contains(groups, 'Grafana-prd-editor') && 'Editor' ||
+          'Viewer'
         allow_assign_grafana_admin: true
 ```
 
