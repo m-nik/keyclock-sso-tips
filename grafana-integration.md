@@ -14,10 +14,10 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configu
 - Admin URL: <grafana_root_url>
 - Base URL: <grafana_root_url>
 - Client scopes:
- - email
- - offline_access
- - profile
- - roles
+  - email
+  - offline_access
+  - profile
+  - roles
 ## Grafana helm values
 ```yaml
   grafana:
