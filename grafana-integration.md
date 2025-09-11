@@ -21,3 +21,17 @@
         name_attribute_path: full_name
         role_attribute_path: contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
 ```
+
+##### grafana-oauth-secret
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-oauth-secret
+  namespace: kube-prometheus-stack
+type: Opaque
+stringData:
+  GF_AUTH_GENERIC_OAUTH_CLIENT_ID: base64-client-id
+  GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: base64-client-secret
+
+```
