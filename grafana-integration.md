@@ -66,7 +66,8 @@ Data:
 
 
 ## Debugging
-1. ```yaml 
+1. enable grafana debug mode
+```yaml 
   grafana.ini:
     log:
       level: debug
