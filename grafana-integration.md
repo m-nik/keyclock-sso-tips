@@ -44,7 +44,8 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configu
         role_attribute_path: >
           contains(groups, 'Grafana-prd-admin') && 'Admin' ||
           contains(groups, 'Grafana-prd-editor') && 'Editor' ||
-          'Viewer'
+          contains(groups, 'Grafana-prd-viewer') && 'Viewer'
+        role_attribute_strict: true  # prevents login without any role
         allow_assign_grafana_admin: true
 ```
 
