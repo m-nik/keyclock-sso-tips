@@ -62,3 +62,13 @@ Data:
   GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: base64-client-secret
 
 ```
+
+
+
+## Debugging
+1. ```yaml 
+  grafana.ini:
+    log:
+      level: debug
+```
+2. https://jmespath.org to test `role_attribute_path`
