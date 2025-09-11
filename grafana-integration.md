@@ -1,5 +1,6 @@
 
-## keyclock define client tips
+## keyclock grafana client configuration
+https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/keycloak/
 
 
 ## Grafana helm values
