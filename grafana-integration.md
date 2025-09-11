@@ -9,10 +9,12 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configu
     envFromSecrets:
       - name: grafana-oauth-secret
     grafana.ini:
+      server:
+        root_url: https://grafana.site.info
       auth.generic_oauth:
         enabled: true
         name: Keycloak
-        allow_sign_up: false
+        allow_sign_up: true
         scopes: openid profile email roles
         auth_url: https://sso.site.info/realms/master/protocol/openid-connect/auth
         token_url: https://sso.site.info/realms/master/protocol/openid-connect/token
@@ -31,7 +33,7 @@ metadata:
   name: grafana-oauth-secret
   namespace: kube-prometheus-stack
 type: Opaque
-stringData:
+Data:
   GF_AUTH_GENERIC_OAUTH_CLIENT_ID: base64-client-id
   GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: base64-client-secret
 
