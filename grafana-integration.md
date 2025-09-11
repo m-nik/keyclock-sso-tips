@@ -37,7 +37,8 @@ https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configu
         email_attribute_path: email
         login_attribute_path: username
         name_attribute_path: full_name
-        role_attribute_path: contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
+        role_attribute_path: contains(realm_access.roles[*], 'grafana_admin') && 'Admin' || contains(realm_access.roles[*], 'grafana_editor') && 'Editor' || 'Viewer'
+        allow_assign_grafana_admin: true
 ```
 
 ##### grafana-oauth-secret
