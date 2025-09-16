@@ -57,7 +57,7 @@ metadata:
   name: grafana-oauth-secret
   namespace: kube-prometheus-stack
 type: Opaque
-Data:
+data:
   GF_AUTH_GENERIC_OAUTH_CLIENT_ID: base64-client-id
   GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: base64-client-secret
 
