@@ -6,7 +6,6 @@ curl -X POST "https://sso.site.info/realms/master/protocol/openid-connect/token"
   -d "client_secret=<client-secret>" \
   -d "grant_type=password" \
   -d "username=<your-username>" \
-  -d "password=<your-password>"
+  -d "password=<your-password>"  | jq .access_token -r | cut -d. -f2 | base64 -d | jq
 
-echo JWT_TOKEN |cut -d. -f2 | base64 -d
 ```
